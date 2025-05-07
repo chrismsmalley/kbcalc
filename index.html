@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calculate your total kettlebell training volume and estimated calories burned with this free tool."
+    />
+    <meta property="og:title" content="Kettlebell Volume Calculator" />
+    <meta property="og:description" content="Estimate your kettlebell workout volume and calories burned. Supports EMOM and Tabata templates." />
+    <meta property="og:image" content="https://yourdomain.com/images/preview.jpg" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <meta name="keywords" content="kettlebell calculator, workout volume, EMOM, Tabata, fitness tools, calorie burn">
+    <meta name="author" content="Your Name or Brand">
+    <title>Kettlebell Volume Calculator</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Kettlebell Volume Calculator",
+      "url": "https://yourdomain.com",
+      "description": "Calculate your total kettlebell training volume and estimated calories burned using this free calculator.",
+      "applicationCategory": "FitnessApplication",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "Your Name or Brand"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I use the kettlebell calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enter the weight of your kettlebell, number of reps, sets, and rounds. Optionally, include your workout duration and select a template like EMOM or Tabata to autofill values."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is workout volume?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Workout volume is the total weight lifted during a workout, calculated by multiplying weight × reps × sets × rounds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is calorie burn estimated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Calories are estimated using MET values based on workout duration and an average user weight of 100kg."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Using the Kettlebell Volume Calculator",
+      "description": "Step-by-step instructions on how to calculate your kettlebell workout volume and calories burned.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "text": "Enter the weight of your kettlebell in pounds or select 'Use kilograms'."
+        },
+        {
+          "@type": "HowToStep",
+          "text": "Fill in reps per set, sets per round, and number of rounds."
+        },
+        {
+          "@type": "HowToStep",
+          "text": "Optionally, enter workout duration in minutes."
+        },
+        {
+          "@type": "HowToStep",
+          "text": "Click 'Calculate' to see your workout volume and estimated calories burned."
+        }
+      ]
+    }
+    </script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: url('images/background/kettlebell_background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        padding: 2rem;
+        margin: 0;
+      }
+      h1 {
+        text-align: center;
+        color: white;
+      }
+      label {
+        display: block;
+        margin: 0.5rem 0 0.2rem;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      input[type="number"]:hover,
+      input[type="number"]:focus {
+        border: 1px solid #00aced;
+        outline: none;
+        background-color: #f9f9f9;
+      }
+      select {
+        width: 50%;
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        color: grey;
+        margin-bottom: 1rem;
+        height: 40px;
+        box-sizing: border-box;
+        /* Match input[type="number"] appearance */
+      }
+      input::placeholder {
+        font-size: 0.85rem;
+        color: #777;
+      }
+      select option[disabled][hidden] {
+        font-size: 0.85rem;
+        color: #777;
+      }
+      button {
+        width: 35%;
+        display: block;
+        margin: 0 auto;
+        padding: 0.75rem;
+        font-size: 1rem;
+        background-color: #add8e6;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover,
+      button:focus {
+        opacity: 0.95;
+      }
+      button:hover {
+        background-color: #87ceeb;
+      }
+      .results {
+        background: black;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: white;
+        position: relative;
+        z-index: 1;
+      }
+      .affiliate-callout {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 6px;
+        color: white;
+        font-size: 0.95rem;
+        margin-top: 1.5rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      .affiliate-callout a {
+        color: #00aced;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .affiliate-callout a:hover {
+        text-decoration: underline;
+      }
+      #shareLink {
+        display: none;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: #0073e6;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      small {
+        display: block;
+        margin-top: -0.5rem;
+        margin-bottom: 0.75rem;
+        color: #555;
+        font-size: 0.85rem;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+      }
+      .calculator-section,
+      .info-section {
+        flex: 1 1 45%;
+        box-sizing: border-box;
+      }
+      .info-section {
+        text-align: center;
+        margin-left: 3rem;
+        margin-top: 2rem;
+        max-width: 500px;
+        background-color: rgba(255, 255, 255, 0.15);
+        padding: 1rem;
+        border-radius: 8px;
+        align-self: flex-start;
+      }
+      @media (max-width: 768px) {
+        .calculator-section, .info-section {
+          flex: 1 1 100%;
+          margin: 0 0 1.5rem 0;
+        }
+      }
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 2rem;
+        border-radius: 8px;
+        color: white;
+      }
+      label, small, h2, p {
+        color: white;
+      }
+      input, select, button {
+        color: black;
+      }
+      .unit-toggle {
+        font-size: 0.85rem;
+        color: white;
+        margin-top: -0.75rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .template-option {
+        display: inline-block;
+        margin-right: 1rem;
+        font-size: 0.85rem;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay">
+    <h1>Kettlebell Volume Calculator</h1>
+    <div class="container">
+      <div class="calculator-section">
+        <form id="calcForm">
+
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <span style="font-size: 0.85rem; color: white;">Workout Templates (optional):</span>
+            <label class="template-option">
+              <input type="radio" name="template" value="emom" /> 20-min EMOM
+            </label>
+            <label class="template-option">
+              <input type="radio" name="template" value="tabata" /> Tabata
+            </label>
+          </div>
+
+          <label for="weight">Kettlebell Weight (lbs)</label>
+          <input type="number" id="weight" required />
+          <label class="unit-toggle"><input type="checkbox" id="unitToggle" /> Use kilograms</label>
+
+          <label for="reps">Reps per Set</label>
+          <input type="number" id="reps" required />
+
+          <label for="sets">Sets per Round</label>
+          <input type="number" id="sets" required />
+
+          <label for="rounds">Number of Rounds</label>
+          <input type="number" id="rounds" required />
+
+          <label for="duration">Workout Duration in Minutes (optional)</label>
+          <input type="number" id="duration" />
+
+          <button type="submit">Calculate</button>
+        </form>
+
+        <div class="results" id="results" style="display: none">
+          <h2>Results</h2>
+          <p><strong>Total Volume:</strong> <span id="volume"></span> lbs</p>
+          <p>
+            <strong>Estimated Calories Burned:</strong>
+            <span id="calories"></span> kcal
+          </p>
+          <p><strong>Intensity:</strong> <span id="intensity"></span></p>
+        </div>
+        <small id="shareLink">Share Results</small>
+      </div>
+      <div class="info-section">
+        <h2>What is This?</h2>
+        <p>This calculator helps you measure your total training volume during a kettlebell workout by multiplying the weight you're lifting by the number of reps, sets, and rounds you perform. If you enter how long the workout took, it will also estimate your calories burned based on standard metabolic calculations.</p>
+        <p>Use this to track your progress over time or get a sense of how much work you're putting in each session!</p>
+        <p>You can also use the optional workout templates like “20-min EMOM” or “Tabata” to quickly fill in typical values. These are great if you’re doing structured formats and want to save time entering data manually.</p>
+        <!-- Ad placeholder inside info box -->
+        <div class="ad-container" style="margin-bottom: 1rem;">
+          <p style="text-align: center; color: #999; font-size: 0.85rem;">Advertisement</p>
+          <div style="width:100%; height:90px; background:#ddd; display:flex; align-items:center; justify-content:center; font-size:0.9rem; color:#555;">
+            Ad goes here
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="affiliate-callout">
+      <p>💪 Need gear? Try these <a href="https://www.amazon.com/s?k=kettlebells" target="_blank"> kettlebells</a> to level up your training.</p>
+    </div>
+    </div>
+    </div>
+
+    <script>
+      document.querySelectorAll('input[name="template"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          const val = radio.value;
+          if (val === "emom") {
+            document.getElementById("reps").value = 10;
+            document.getElementById("sets").value = 3;
+            document.getElementById("rounds").value = 5;
+            document.getElementById("duration").value = 20;
+          } else if (val === "tabata") {
+            document.getElementById("reps").value = 5;
+            document.getElementById("sets").value = 2;
+            document.getElementById("rounds").value = 8;
+            document.getElementById("duration").value = 4;
+          }
+        });
+      });
+
+      document
+        .getElementById("calcForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const weight = parseFloat(document.getElementById("weight").value);
+          const isKg = document.getElementById("unitToggle").checked;
+          const reps = parseInt(document.getElementById("reps").value);
+          const sets = parseInt(document.getElementById("sets").value);
+          const rounds = parseInt(document.getElementById("rounds").value);
+          const duration =
+            parseFloat(document.getElementById("duration").value) || 0;
+
+          const weightInUse = isKg ? weight * 2.20462 : weight;
+          const totalVolume = weightInUse * reps * sets * rounds;
+
+          const userWeightKg = 100; // average default (can be improved)
+          const MET = 7.0; // medium intensity default
+          const calBurned =
+            duration > 0 ? Math.round((MET * userWeightKg * duration) / 60) : 0;
+
+          let intensity = "Light";
+          const totalReps = reps * sets * rounds;
+          if (totalReps >= 300 || duration >= 30) intensity = "Intense";
+          else if (totalReps >= 150 || duration >= 15) intensity = "Moderate";
+
+          document.getElementById("volume").textContent =
+            totalVolume.toLocaleString();
+          document.getElementById("calories").textContent = calBurned;
+          document.getElementById("intensity").textContent = intensity;
+          document.getElementById("results").style.display = "block";
+
+          const shareLink = document.getElementById("shareLink");
+          if (navigator.share) {
+            shareLink.style.display = "inline";
+            shareLink.onclick = () => {
+              const shareData = {
+                title: "Kettlebell Volume Calculator Results",
+                text: `Total Volume: ${totalVolume.toLocaleString()} lbs\nEstimated Calories Burned: ${calBurned} kcal\nIntensity: ${intensity}`,
+              };
+              navigator.share(shareData).catch(console.error);
+            };
+          } else {
+            shareLink.style.display = "none";
+          }
+        });
+    </script>
+    <!-- Footer ad placeholder -->
+    <div class="ad-container" style="margin-top: 2rem; text-align: center;">
+      <p style="color: #999; font-size: 0.85rem;">Advertisement</p>
+      <div style="width:100%; height:90px; background:#ddd; display:flex; align-items:center; justify-content:center; font-size:0.9rem; color:#555;">
+        Ad goes here
+      </div>
+      <footer style="margin-top: 3rem; text-align: center; color: #ccc; font-size: 0.85rem;">
+        <p>
+          <a href="pages/privacy.html" style="color: #ccc; text-decoration: none; margin: 0 1rem;">Privacy Policy</a>
+          |
+          <a href="pages/contact.html" style="color: #ccc; text-decoration: none; margin: 0 1rem;">Contact</a>
+          |
+          <a href="pages/about.html" style="color: #ccc; text-decoration: none; margin: 0 1rem;">About</a>
+        </p>
+        <p>&copy; 2025 Kettlebell Volume Calculator</p>
+      </footer>
+    </div>
+  </body>
+</html>
