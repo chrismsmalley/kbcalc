@@ -266,6 +266,10 @@
   <body>
     <div class="overlay">
     <h1>Kettlebell Volume Calculator</h1>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: white;">
+      Want to track your progress or estimate how much work you're really putting in during a kettlebell workout?
+      This free calculator helps you quickly measure your training volume and calories burned — no login, no fluff.
+    </p>
     <div class="container">
       <div class="calculator-section">
         <form id="calcForm">
@@ -315,10 +319,18 @@
         <p>This calculator helps you measure your total training volume during a kettlebell workout by multiplying the weight you're lifting by the number of reps, sets, and rounds you perform. If you enter how long the workout took, it will also estimate your calories burned based on standard metabolic calculations.</p>
         <p>Use this to track your progress over time or get a sense of how much work you're putting in each session!</p>
         <p>You can also use the optional workout templates like “20-min EMOM” or “Tabata” to quickly fill in typical values. These are great if you’re doing structured formats and want to save time entering data manually.</p>
+        <p style="font-style: italic; font-size: 0.9rem; color: #ddd;">
+          "I’ve been using this weekly to track my workouts — it’s a great way to stay consistent!" — Chris
+        </p>
       </div>
     </div>
     <div class="affiliate-callout">
       <p>💪 Need gear? Try these <a href="https://www.amazon.com/s?k=kettlebells" target="_blank"> kettlebells</a> to level up your training.</p>
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="pages/about.html" style="color: #00aced;">Learn more about the calculator</a> |
+      <a href="pages/contact.html" style="color: #00aced;">Contact the creator</a> |
+      <a href="pages/privacy.html" style="color: #00aced;">Privacy Policy</a>
     </div>
     </div>
     </div>
@@ -357,8 +369,8 @@
           const weightInUse = isKg ? weight * 2.20462 : weight;
           const totalVolume = weightInUse * reps * sets * rounds;
 
-          const userWeightKg = 100; // average default (can be improved)
-          const MET = 7.0; // medium intensity default
+          const userWeightKg = 100; 
+          const MET = 7.0; 
           const calBurned =
             duration > 0 ? Math.round((MET * userWeightKg * duration) / 60) : 0;
 
@@ -398,6 +410,8 @@
         </p>
         <p>&copy; 2025 Kettlebell Volume Calculator</p>
       </footer>
-    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: #aaa; margin-top: 3rem;">
+      Created by a kettlebell enthusiast and software developer. No tracking, no ads (yet) — just helpful tools.
+    </p>
   </body>
 </html>
