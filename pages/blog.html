@@ -14,7 +14,7 @@
       max-width: 750px;
       margin: 2rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      line-height: 1.85;
     }
     h1, h2 {
       color: #00aced;
@@ -28,6 +28,18 @@
     }
     article {
       margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    article h2:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    @media (min-width: 600px) {
+      article:hover {
+        background-color: rgba(255, 255, 255, 0.025);
+        transition: background-color 0.3s ease;
+      }
     }
   </style>
   <script type="application/ld+json">
@@ -74,6 +86,9 @@
 </head>
 <body>
   <h1>Tips & Articles</h1>
+  <p style="font-size: 0.95rem; color: #ccc; margin-top: -1rem; margin-bottom: 2rem;">
+    These articles are for informational purposes only and are not a substitute for professional medical advice. Always consult your doctor or a certified fitness professional before beginning any new exercise program.
+  </p>
 
   <article>
     <h2>Why Track Kettlebell Volume?</h2>
