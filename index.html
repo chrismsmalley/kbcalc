@@ -208,12 +208,11 @@
       }
       .container {
         display: flex;
-        justify-content: center;
-        align-items: stretch;
+        flex-direction: column;
+        align-items: center;
         gap: 2rem;
         max-width: 1200px;
         margin: 0 auto;
-        flex-wrap: wrap;
       }
       .calculator-section,
       .info-section {
@@ -308,7 +307,6 @@
           <p><strong>Intensity:</strong> <span id="intensity"></span></p>
         </div>
         <small id="shareLink">Share Results</small>
-      </div>
       </div>
       <div class="info-section">
         <h2>What is This?</h2>
