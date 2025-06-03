@@ -216,26 +216,18 @@
       }
       .calculator-section,
       .info-section {
-        flex: 1 1 45%;
+        width: 100%;
+        max-width: 700px;
+        flex: unset;
         box-sizing: border-box;
       }
       .info-section {
         text-align: center;
-        max-width: 500px;
         background-color: rgba(255, 255, 255, 0.15);
         padding: 1rem;
         border-radius: 8px;
         align-self: flex-start;
         margin: 2rem auto 0 auto;
-      }
-      .info-section p,
-      .info-section h2,
-      .info-section ul,
-      .info-section ol {
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
       }
       @media (max-width: 768px) {
         .calculator-section, .info-section {
