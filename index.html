@@ -260,9 +260,59 @@
         font-size: 0.85rem;
         color: white;
       }
+      .burger-container {
+  position: relative;
+}
+
+.burger-button {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+}
+
+.burger-menu {
+  transition: all 0.3s ease;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1rem;
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+.burger-menu a {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.burger-menu a:hover {
+  text-decoration: underline;
+}
     </style>
   </head>
   <body>
+    <div class="burger-container">
+<button class="burger-button" aria-label="Toggle menu" aria-controls="burgerMenu" aria-expanded="false">☰</button>
+  <nav class="burger-menu" id="burgerMenu">
+    <a href="index.html">Home</a>
+    <a href="pages/about.html">About</a>
+    <a href="pages/contact.html">Contact</a>
+    <a href="pages/blog.html">Tips</a>
+    <a href="pages/privacy.html">Privacy Policy</a>
+    <a href="pages/cookie.html">Cookie Policy</a>
+  </nav>
+</div>
     <div class="overlay">
     <h1>Kettlebell Volume Calculator</h1>
     <p style="text-align: center; margin-top: -1rem;">
@@ -422,5 +472,22 @@
       <footer style="margin-top: 3rem; text-align: center; color: #ccc; font-size: 0.85rem;">
         <p>&copy; 2025 Kettlebell Volume Calculator</p>
       </footer>
+      <script>
+  const burgerButton = document.querySelector('.burger-button');
+  const burgerMenu = document.getElementById('burgerMenu');
+
+  burgerButton.addEventListener('click', () => {
+    const isOpen = burgerMenu.style.display === 'flex';
+    burgerMenu.style.display = isOpen ? 'none' : 'flex';
+    burgerButton.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  document.querySelectorAll('.burger-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      burgerMenu.style.display = 'none';
+      burgerButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
   </body>
 </html>
